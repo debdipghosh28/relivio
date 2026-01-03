@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relivio™ | Smart Digital Fever Relief</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0f172a;
+            --accent: #06b6d4;
+            --light: #f8fafc;
+            --text-gray: #64748b;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Global Components --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 10px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background-color: var(--primary-dark);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgb(15 23 53 / 52%);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #b0c9ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            color: white;
+            align-items: center;
+            /* background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); */
+            background-image: url(WhatsApp\ Image\ 2026-01-03\ at\ 12.04.21\ PM.jpeg);
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-text span {
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color:#ff3990;
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            position: absolute;
+            z-index: 2;
+            border: 1px solid rgba(0,0,0,0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .temp-display {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* --- Problem & Solution --- */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .comp-card {
+            padding: 40px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .comp-card.traditional {
+            background-color: #fff1f2;
+            border: 1px solid #fecdd3;
+        }
+
+        .comp-card.relivio {
+            background-color: #f0f9ff;
+            border: 1px solid #bae6fd;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+            transform: scale(1.05);
+        }
+
+        .comp-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .comp-list {
+            list-style: none;
+        }
+
+        .comp-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comp-list i.fa-xmark { color: #e11d48; }
+        .comp-list i.fa-check { color: #059669; }
+
+        /* --- Visual Logic Flow --- */
+        .logic-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--light);
+            padding: 50px;
+            border-radius: 30px;
+            position: relative;
+        }
+
+        .logic-step {
+            text-align: center;
+            flex: 1;
+            z-index: 2;
+        }
+
+        .logic-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+            color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .logic-arrow {
+            font-size: 1.5rem;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+
+        /* --- Market Data --- */
+        .market-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .market-item {
+            margin-bottom: 30px;
+        }
+
+        .market-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .progress-bg {
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        /* --- Roadmap --- */
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+        }
+
+        .roadmap-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            margin-bottom: 30px;
+        }
+
+        .roadmap-item.left { left: 0; text-align: right; }
+        .roadmap-item.right { left: 50%; text-align: left; }
+
+        .roadmap-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 25px;
+            z-index: 1;
+        }
+
+        .left .roadmap-dot { right: -10px; }
+        .right .roadmap-dot { left: -10px; }
+
+        .roadmap-content {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        /* --- Team Grid --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .member-img {
+            width: 100px;
+            height: 100px;
+            background: #6e7fe5;
+            border-radius: 19%;
+            margin: 0px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .team-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .team-card p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        .dept-tag {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .hero-content, .comparison-grid { grid-template-columns: 1fr; }
+            .hero-text { text-align: center; }
+            .hero-text h1 { font-size: 3rem; }
+            .logic-flow { flex-direction: column; gap: 30px; }
+            .logic-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo"><i class="fa-solid fa-droplet"></i> Relivio™</a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#market">Market</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+            <a href="mailto:rohitaswasingha@outlook.com" class="btn btn-primary">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Smart Digital <br><span>Fever Relief</span></h1>
+                <p>Relivio™ is a revolutionary digital forehead cooling device designed for precise, consistent, and portable fever management.</p>
+                <div class="hero-btns">
+                    <a href="#how-it-works" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight:800; color: #64748b;">LIVE MONITOR</span>
+                        <span style="color: #22c55e;"><i class="fa-solid fa-circle"></i> Active</span>
+                    </div>
+                    <div class="temp-display" id="hero-temp">102.4°F</div>
+                    <p style="text-align: center; color: #64748b;">Relivio™ Cooling Active</p>
+                    <div class="progress-bg" style="margin-top: 20px;">
+                        <div class="progress-bar" style="width: 75%; background: var(--accent);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Evolution of Relief</h2>
+                <p>Why move from traditional methods to smart technology?</p>
+            </div>
+            <div class="comparison-grid">
+                <div class="comp-card traditional">
+                    <h3>Traditional</h3>
+                    <ul class="comp-list">
+                        <li><i class="fa-solid fa-xmark"></i> Inconsistent Cooling</li>
+                        <li><i class="fa-solid fa-xmark"></i> Short Duration (Needs re-wetting)</li>
+                        <li><i class="fa-solid fa-xmark"></i> Messy & Unhygienic</li>
+                        <li><i class="fa-solid fa-xmark"></i> No Temperature Monitoring</li>
+                    </ul>
+                </div>
+                <div class="comp-card relivio">
+                    <h3>Relivio™</h3>
+                    <ul class="comp-list">
+                        <li><i class="fa-solid fa-check"></i> Precise Digital Control</li>
+                        <li><i class="fa-solid fa-check"></i> Continuous Steady Relief</li>
+                        <li><i class="fa-solid fa-check"></i> Dry, Portable & Reusable</li>
+                        <li><i class="fa-solid fa-check"></i> Smart Sensor Feedback Loop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Logic Flow -->
+    <section id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>An intelligent feedback loop designed for your safety.</p>
+            </div>
+            <div class="logic-flow">
+                <div class="logic-step">
+                    <div class="logic-icon"><i class="fa-solid fa-temperature-high"></i></div>
+                    <h4>Sensors</h4>
+                    <p>Detects skin temperature</p>
+                </div>
+                <div class="logic-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="logic-step">
+                    <div class="logic-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h4>MCU</h4>
+                    <p>Processes real-time data</p>
+                </div>
+                <div class="logic-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="logic-step">
+                    <div class="logic-icon"><i class="fa-solid fa-snowflake"></i></div>
+                    <h4>Cooling Pad</h4>
+                    <p>Applies adaptive relief</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section id="market">
+        <div class="container">
+            <div class="section-title">
+                <h2>Market Opportunity</h2>
+                <p>Growth potential in the Kolkata health-tech sector.</p>
+            </div>
+            <div class="market-container">
+                <div class="market-item">
+                    <div class="market-label"><span>TAM (Total Addressable Market)</span><span>70%</span></div>
+                    <div class="progress-bg"><div class="progress-bar" data-width="70%"></div></div>
+                </div>
+                <div class="market-item">
+                    <div class="market-label"><span>SAM (Serviceable Market)</span><span>20%</span></div>
+                    <div class="progress-bg"><div class="progress-bar" data-width="20%"></div></div>
+                </div>
+                <div class="market-item">
+                    <div class="market-label"><span>SOM (Obtainable Market)</span><span>10%</span></div>
+                    <div class="progress-bg"><div class="progress-bar" data-width="10%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Vision</h2>
+                <p>The roadmap to full IoT and AI integration.</p>
+            </div>
+            <div class="roadmap-timeline">
+                <div class="roadmap-item left">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-content">
+                        <h4>IoT Integration</h4>
+                        <p>Remote monitoring for doctors and parents.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item right">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-content">
+                        <h4>App-Based Ecosystem</h4>
+                        <p>Real-time data logging and fever alerts.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item left">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-content">
+                        <h4>AI Prediction</h4>
+                        <p>Advanced illness detection via symptoms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" style="background-color: #f8fafc;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Project Team</h2>
+                <p>The innovators behind Relivio™</p>
+            </div>
+            <div class="team-grid">
+                <!-- Member 1 -->
+                <div class="team-card">
+                    <div class="member-img"><img src="Rohitaswa.png" style="    height: inherit;
+    width: -webkit-fill-available;">></div>
+                    <h4>Rohitaswa Singha</h4>
+                    <p>UEMK</p>
+                    <span class="dept-tag">ECE</span>
+                </div>
+                <!-- Member 2 -->
+                <div class="team-card">
+                    <div class="member-img"><img src="Debdip.png" style="    height: inherit;
+    width: -webkit-fill-available;"></div>
+                    <h4>Debdip Ghosh</h4>
+                    <p>UEMK</p>
+                    <span class="dept-tag">ECE</span>
+                </div>
+                <!-- Member 3 -->
+                <div class="team-card">
+                    <div class="member-img"><img src="Shubhankar.png" style="    height: inherit;
+    width: -webkit-fill-available;"></div>
+                    <h4>Subhankar Das Adhikary</h4>
+                    <p>UEMK</p>
+                    <span class="dept-tag">ECE</span>
+                </div>
+                <!-- Member 4 -->
+                <div class="team-card">
+                    <div class="member-img"><img src="Rajdeb.png" style="    height: inherit;
+    width: -webkit-fill-available;"></div>
+                    <h4>Rajdeb Pal</h4>
+                    <p>UEMK</p>
+                    <span class="dept-tag">ECE</span>
+                </div>
+                <!-- Member 5 -->
+                <div class="team-card">
+                    <div class="member-img"><img src="Arghya.png" style="    height: inherit;
+    width: -webkit-fill-available;"></div>
+                    <h4>Arghya Saha</h4>
+                    <p>UEMK</p>
+                    <span class="dept-tag">ECE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Relivio™ Team. All rights reserved.</p>
+            <p style="margin-top: 10px; opacity: 0.6;">Electronics and Communication Engineering | UEMK</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Animate progress bars on scroll
+            const marketSection = document.getElementById('market');
+            const bars = document.querySelectorAll('.progress-bar');
+            const sectionPos = marketSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 1.3;
+
+            if (sectionPos < screenPos) {
+                bars.forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+            }
+        });
+
+        // Simple dynamic temperature mock
+        setInterval(() => {
+            const tempBase = 101.5;
+            const random = (Math.random() * 1.5).toFixed(1);
+            const display = document.getElementById('hero-temp');
+            if(display) display.innerText = (tempBase + parseFloat(random)) + "°F";
+        }, 3000);
+    </script>
+</body>
+</html>
